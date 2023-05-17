@@ -70,7 +70,7 @@ public class CLook {
         int countGreater = 0; //count for how many locations are greater than start
         int countLess = 0; //count for how many locations are less than start
         
-        for (int i = 1; i < requests.length; i++)
+        for (int i = 1; i <= requests.length; i++)
         {
             loc[i-1][0] = i;
             

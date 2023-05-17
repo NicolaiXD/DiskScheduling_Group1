@@ -35,7 +35,7 @@ public class DiskScheduling_Group1 {
         int current_position, track_size, num_requests;
         int[] requests;
 
-        do {
+            do {
             System.out.print("Input Current Position: ");
             current_position = scanner.nextInt();
 
@@ -54,15 +54,15 @@ public class DiskScheduling_Group1 {
             System.out.println("Input the requests:");
             requests = new int[num_requests];
             
-            for (int i = 0; i < num_requests; i++) {
+            for (int i = 1; i <= num_requests; i++) {
 
                 do
                 {
                 System.out.print("Loc " + i + ": ");
-                requests[i] = scanner.nextInt();
+                requests[i-1] = scanner.nextInt();
                 System.out.println("");
                 }
-                while (requests[i] < 0 || requests[i] > track_size-1);
+                while (requests[i] < 0 || requests[i] > track_size-1); // This will repeat if inputted number is wrong
             }
 
             
