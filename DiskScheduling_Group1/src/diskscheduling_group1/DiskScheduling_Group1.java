@@ -42,24 +42,34 @@ public class DiskScheduling_Group1 {
             System.out.print("Input Track Size: ");
             track_size = scanner.nextInt();
 
-            System.out.print("Input number of requests (1 to 10): ");
-            num_requests = scanner.nextInt();
+            do
+            {
+                System.out.print("Input number of requests (1 to 10): ");
+                num_requests = scanner.nextInt();
 
+            }
+            while (num_requests < 1 || num_requests > 10); // This will repeat if inputted number is wrong
+            
+            
             System.out.println("Input the requests:");
             requests = new int[num_requests];
-
+            
             for (int i = 0; i < num_requests; i++) {
 
+                do
+                {
+                System.out.print("Loc " + i + ": ");
                 requests[i] = scanner.nextInt();
+                System.out.println("");
+                }
+                while (requests[i] < 0 || requests[i] > track_size-1);
             }
 
+            
+            
             switch (choice.toUpperCase()) {
                 case "A":
-                    System.out.print("Input Total Head Movement: ");
-                    int total_head_movement = scanner.nextInt();
-                    System.out.print("Input Seek time: ");
-                    int seek_time = scanner.nextInt();
-                    head_movement = fcfs(current_position, track_size, requests, total_head_movement, seek_time);
+                    head_movement = fcfs(current_position, track_size, requests);
                     break;
                 case "B":
                     head_movement = sstf(current_position, track_size, requests);
@@ -68,24 +78,31 @@ public class DiskScheduling_Group1 {
                     head_movement = scan(current_position, track_size, requests);
                     break;
                 case "D":
+                    head_movement = Look.main(current_position, track_size, requests);
+                    /*
                     try {
                     Look.main(new String[0]);
                 } catch (IOException e) {
                     System.out.println("An error occurred while executing Look: " + e.getMessage());
-                }
+                }*/
                 break;
                 case "E":
+                    head_movement = CLook.main(current_position, track_size, requests);
+                    /*
                     try {
                     CLook.main(new String[0]);
                 } catch (IOException e) {
                     System.out.println("An error occurred while executing CLook: " + e.getMessage());
-                }
+                }*/
                 case "F":
+                    head_movement = CScan.main(current_position, track_size, requests);
+                    /*
                     try {
                     CScan.main(new String[0]);
                 } catch (IOException e) {
                     System.out.println("An error occurred while executing CScan: " + e.getMessage());
-                }
+                }*/
+                    break;
                 case "G":
                     System.out.println("Exiting...");
                     System.exit(0);

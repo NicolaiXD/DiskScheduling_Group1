@@ -1,14 +1,16 @@
 package diskscheduling_group1;
 
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+*/
 
 public class Look {
     
-    public static void main(String[] args) throws IOException 
+    public static int main(int current_position, int track_size, int[] requests)
     {
-        
+        /*
         BufferedReader bfn = new BufferedReader(
         new InputStreamReader(System.in));
 
@@ -25,9 +27,9 @@ public class Look {
             n = Integer.parseInt(bfn.readLine());
         }
         while (n < 0 || n > 10); // This will repeat if inputted number is wrong
-
-
-        //processes
+        
+        
+        //locations
         int loc[][] = new int[n][2];
 
         int countGreater = 0; //count for how many locations are greater than start
@@ -46,6 +48,33 @@ public class Look {
             }
             while (loc[i-1][1] < 0 || loc[i-1][1] > size-1);
                 
+            if (loc[i-1][1] > start)
+            {
+                countGreater = countGreater + 1;
+            }
+            else if (loc[i-1][1] < start)
+            {
+                countLess = countLess + 1;
+            }
+            else
+            {
+                
+            }
+        }
+
+        */
+
+        int start = current_position;
+        int size = track_size;
+        int n = requests.length;
+        int loc[][] = new int[n][2];
+        int countGreater = 0; //count for how many locations are greater than start
+        int countLess = 0; //count for how many locations are less than start
+        
+        for (int i = 1; i < requests.length; i++)
+        {
+            loc[i-1][0] = i;
+            
             if (loc[i-1][1] > start)
             {
                 countGreater = countGreater + 1;
@@ -124,10 +153,13 @@ public class Look {
             thm = thm + greaterThanStart [countGreater][1] - lessThanStart [0][1]; //add to total head movement from highest number to lowest number;
         }
         
+        /*
         System.out.println("");
         System.out.println("Total head movement: " + thm);
         System.out.println("");
+        */
         
+        return thm;
     }
     
 }

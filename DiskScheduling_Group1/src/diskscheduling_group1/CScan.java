@@ -6,9 +6,10 @@ import java.io.InputStreamReader;
 
 public class CScan {
     
-    public static void main(String[] args) throws IOException 
+    public static int main(int current_position, int track_size, int[] requests)
     {
         
+        /*
         BufferedReader bfn = new BufferedReader(
         new InputStreamReader(System.in));
 
@@ -25,9 +26,9 @@ public class CScan {
             n = Integer.parseInt(bfn.readLine());
         }
         while (n < 0 || n > 10); // This will repeat if inputted number is wrong
-
-
-        //processes
+        
+        
+        //locations
         int loc[][] = new int[n][2];
 
         int countGreater = 0; //count for how many locations are greater than start
@@ -46,6 +47,33 @@ public class CScan {
             }
             while (loc[i-1][1] < 0 || loc[i-1][1] > size-1);
                 
+            if (loc[i-1][1] > start)
+            {
+                countGreater = countGreater + 1;
+            }
+            else if (loc[i-1][1] < start)
+            {
+                countLess = countLess + 1;
+            }
+            else
+            {
+                
+            }
+        }
+
+        */
+
+        int start = current_position;
+        int size = track_size;
+        int n = requests.length;
+        int loc[][] = new int[n][2];
+        int countGreater = 0; //count for how many locations are greater than start
+        int countLess = 0; //count for how many locations are less than start
+        
+        for (int i = 1; i < requests.length; i++)
+        {
+            loc[i-1][0] = i;
+            
             if (loc[i-1][1] > start)
             {
                 countGreater = countGreater + 1;
@@ -122,9 +150,13 @@ public class CScan {
             thm = size - start + size + lessThanStart [countLess - 1][1]; //total head movement from start to maxlimit to 0 to highest lessThanStart
         }
         
+        /*
         System.out.println("");
         System.out.println("Total head movement: " + thm);
         System.out.println("");
+        */
+        
+        return thm;
         
     }
 }
