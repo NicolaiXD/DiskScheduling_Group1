@@ -96,17 +96,18 @@ public class DiskScheduling_Group1 {
                 } catch (IOException e) {
                     System.out.println("An error occurred while executing Look: " + e.getMessage());
                 }*/
-                break;
+                    break;
                 case "E":
-                    head_movement = CLook.main(current_position, track_size, requests);
+                    head_movement = CScan.main(current_position, track_size, requests);
                     /*
                     try {
                     CLook.main(new String[0]);
                 } catch (IOException e) {
                     System.out.println("An error occurred while executing CLook: " + e.getMessage());
                 }*/
+                    break;
                 case "F":
-                    head_movement = CScan.main(current_position, track_size, requests);
+                    head_movement = CLook.main(current_position, track_size, requests);
                     /*
                     try {
                     CScan.main(new String[0]);

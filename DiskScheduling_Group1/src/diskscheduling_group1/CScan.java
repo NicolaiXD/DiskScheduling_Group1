@@ -144,11 +144,11 @@ public class CScan {
         //depends on queue number
         if (lessThanStart [countLess - 1][0] < greaterThanStart [0][0])
         {
-            thm = start + size + size - greaterThanStart [0][1]; //total head movement from start to 0 to maxlimit to lowest greaterThanStart
+            thm = start + size -1 + size - 1 - greaterThanStart [0][1]; //total head movement from start to 0 to maxlimit to lowest greaterThanStart
         }
         else 
         {
-            thm = size - start + size + lessThanStart [countLess - 1][1]; //total head movement from start to maxlimit to 0 to highest lessThanStart
+            thm = size -1 - start + size - 1 + lessThanStart [countLess - 1][1]; //total head movement from start to maxlimit to 0 to highest lessThanStart
         }
         
         /*
