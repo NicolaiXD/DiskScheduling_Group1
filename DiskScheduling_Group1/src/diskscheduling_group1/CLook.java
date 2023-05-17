@@ -73,6 +73,7 @@ public class CLook {
         for (int i = 1; i <= n; i++)
         {
             loc[i-1][0] = i;
+            loc[i-1][1] = requests[i-1];
             
             if (loc[i-1][1] > start)
             {
@@ -118,7 +119,6 @@ public class CLook {
         int greaterIndex = 0;
         int lessIndex = 0;
         
-        //separate into 2 arrays: one greater than start and the other less than start
         for (int i = 0; i < n; i++)
         {
             if (loc[i][1] > start)

@@ -74,6 +74,7 @@ public class Look {
         for (int i = 1; i <= n; i++)
         {
             loc[i-1][0] = i;
+            loc[i-1][1] = requests[i-1];
             
             if (loc[i-1][1] > start)
             {
@@ -145,12 +146,12 @@ public class Look {
         if (lessThanStart [countLess - 1][0] < greaterThanStart [0][0])
         {
             thm = start - lessThanStart [0][1]; //total head movement from start to lowest number;
-            thm = thm + greaterThanStart [countGreater][1] - lessThanStart [0][1]; //add to total head movement from lowest number to highest number;
+            thm = thm + greaterThanStart [countGreater - 1][1] - lessThanStart [0][1]; //add to total head movement from lowest number to highest number;
         }
         else 
         {
-            thm = greaterThanStart [countGreater][1] - start; //total head movement from start to highest number;
-            thm = thm + greaterThanStart [countGreater][1] - lessThanStart [0][1]; //add to total head movement from highest number to lowest number;
+            thm = greaterThanStart [countGreater -1][1] - start; //total head movement from start to highest number;
+            thm = thm + greaterThanStart [countGreater - 1][1] - lessThanStart [0][1]; //add to total head movement from highest number to lowest number;
         }
         
         /*

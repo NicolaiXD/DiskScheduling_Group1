@@ -25,8 +25,11 @@ public class DiskScheduling_Group1 {
         System.out.println("[F] Circular Look (CLOOK)");
         System.out.println("[G] Exit");
 
+        String choice = "";
+
         System.out.print("Enter your choice: ");
-        String choice = scanner.next();
+        choice = scanner.next();
+        
 
         int head_movement = 0;
 
@@ -36,11 +39,20 @@ public class DiskScheduling_Group1 {
         int[] requests;
 
             do {
-            System.out.print("Input Current Position: ");
-            current_position = scanner.nextInt();
+                
+                do
+                {
+                    System.out.print("Input Track Size: ");
+                    track_size = scanner.nextInt();
+                }
+                while (track_size < 1);
 
-            System.out.print("Input Track Size: ");
-            track_size = scanner.nextInt();
+                do
+                {
+                    System.out.print("Input Current Position: ");
+                    current_position = scanner.nextInt();
+                }
+                while (current_position < 0 || current_position >= track_size);
 
             do
             {
@@ -60,9 +72,8 @@ public class DiskScheduling_Group1 {
                 {
                 System.out.print("Loc " + i + ": ");
                 requests[i-1] = scanner.nextInt();
-                System.out.println("");
                 }
-                while (requests[i] < 0 || requests[i] > track_size-1); // This will repeat if inputted number is wrong
+                while (requests[i-1] < 0 || requests[i-1] > track_size-1); // This will repeat if inputted number is wrong
             }
 
             

@@ -73,6 +73,7 @@ public class CScan {
         for (int i = 1; i <= n; i++)
         {
             loc[i-1][0] = i;
+            loc[i-1][1] = requests[i-1];
             
             if (loc[i-1][1] > start)
             {
