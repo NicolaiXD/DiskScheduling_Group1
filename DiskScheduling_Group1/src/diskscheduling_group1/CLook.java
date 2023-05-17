@@ -145,14 +145,14 @@ public class CLook {
         if (lessThanStart [countLess - 1][0] < greaterThanStart [0][0])
         {
             thm = start - lessThanStart [0][1]; //total head movement from start to lowest
-            thm = thm + greaterThanStart [countGreater][1] - lessThanStart [0][1]; //total head movement from lowest to highest
-            thm = thm + greaterThanStart [countGreater][1] - greaterThanStart [0][1]; //total head movement from highest to lowest greaterThanStart
+            thm = thm + greaterThanStart [countGreater - 1][1] - lessThanStart [0][1]; //total head movement from lowest to highest
+            thm = thm + greaterThanStart [countGreater - 1][1] - greaterThanStart [0][1]; //total head movement from highest to lowest greaterThanStart
         }
         else 
         {
-            thm = greaterThanStart [countGreater][1] - start; //total head movement from start to highest
-            thm = thm + greaterThanStart [countGreater][1] - lessThanStart [0][1]; //total head movement from highest to lowest
-            thm = thm + lessThanStart [countLess][1] - lessThanStart [0][1]; //total head movement from lowest to highest lessThanStart
+            thm = greaterThanStart [countGreater - 1][1] - start; //total head movement from start to highest
+            thm = thm + greaterThanStart [countGreater - 1][1] - lessThanStart [0][1]; //total head movement from highest to lowest
+            thm = thm + lessThanStart [countLess - 1][1] - lessThanStart [0][1]; //total head movement from lowest to highest lessThanStart
         }
         
         /*
