@@ -44,14 +44,7 @@ public class DiskScheduling_Group1 {
                 System.exit(0);
             }
 
-            System.out.print("Input Current Position: ");
-            while (!scanner.hasNextInt()) {
-                System.out.println("Invalid input! Please enter a number.");
-                System.out.print("Input Current Position: ");
-                scanner.next();
-            }
-            current_position = scanner.nextInt();
-
+            do {
             System.out.print("Input Track Size: ");
             while (!scanner.hasNextInt()) {
                 System.out.println("Invalid input! Please enter a number.");
@@ -59,7 +52,18 @@ public class DiskScheduling_Group1 {
                 scanner.next();
             }
             track_size = scanner.nextInt();
-
+            } while (track_size < 1);
+            
+            do {
+            System.out.print("Input Current Position: ");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Invalid input! Please enter a number.");
+                System.out.print("Input Current Position: ");
+                scanner.next();
+            }
+            current_position = scanner.nextInt();
+            } while (current_position < 0 || current_position > track_size);
+            
             do {
                 System.out.print("Input number of requests (1 to 10): ");
                 while (!scanner.hasNextInt()) {
@@ -73,7 +77,7 @@ public class DiskScheduling_Group1 {
             System.out.println("Input the requests:");
             requests = new int[num_requests];
 
-            for (int i = 0; i < num_requests; i++) {
+            for (int i = 1; i <= num_requests; i++) {
                 do {
                     System.out.print("Loc " + i + ": ");
                     while (!scanner.hasNextInt()) {
@@ -81,8 +85,8 @@ public class DiskScheduling_Group1 {
                         System.out.print("Loc " + i + ": ");
                         scanner.next();
                     }
-                    requests[i] = scanner.nextInt();
-                } while (requests[i] < 0 || requests[i] > track_size - 1);
+                    requests[i-1] = scanner.nextInt();
+                } while (requests[i-1] < 0 || requests[i-1] > track_size - 1);
             }
 
             switch (choice.toUpperCase()) {
@@ -103,12 +107,12 @@ public class DiskScheduling_Group1 {
                     head_movement = Look.main(current_position, track_size, requests);
                     break;
                 case "E":
-                    System.out.println("You chose CLook");
-                    head_movement = CLook.main(current_position, track_size, requests);
-                    break;
-                case "F":
                     System.out.println("You chose CScan");
                     head_movement = CScan.main(current_position, track_size, requests);
+                    break;
+                case "F":
+                    System.out.println("You chose CLook");
+                    head_movement = CLook.main(current_position, track_size, requests);
                     break;
             }
 
