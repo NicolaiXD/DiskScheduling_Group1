@@ -66,18 +66,14 @@ public class Scan {
         int thm = 0; //total head movement
 
         //depends on queue number
-        if (lessThanStart[countLess - 1][0] < greaterThanStart[countGreater - 1][0]) {
-            thm = start - lessThanStart[0][1]; // total head movement from start to lowest number;
-            thm += greaterThanStart[countGreater - 1][1] - lessThanStart[0][1]; // add to total head movement from lowest number to highest number;
-            thm += size - 1 - greaterThanStart[countGreater - 1][1]; // add to total head movement from highest number to the end of the track;
-        } else {
-            thm = start - lessThanStart[0][1]; // total head movement from start to lowest number;
-            thm += greaterThanStart[countGreater - 1][1] - lessThanStart[countLess - 1][1]; // add to total head movement from highest number to lowest number;
-            thm += size - 1 - greaterThanStart[countGreater - 1][1]; // add to total head movement from lowest number to the end of the track;
+        if (lessThanStart [countLess - 1][0] < greaterThanStart [0][0])
+        {
+            thm = start + greaterThanStart [countGreater - 1][1]; //total head movement from start to 0 to highest number;
         }
-
-        //add the head movement from the last request to the end of the track
-        thm += size - 1 - greaterThanStart[countGreater - 1][1];
+        else 
+        {
+            thm = size - 1 - start + size - lessThanStart [0][1]; //total head movement from start to maxlimit to lowest number;
+        }
 
         return thm;
     }
