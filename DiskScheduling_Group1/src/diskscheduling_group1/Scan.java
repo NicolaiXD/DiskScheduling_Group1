@@ -1,41 +1,84 @@
 package diskscheduling_group1;
 
-import java.util.*;
-
+//import java.util.*;
 public class Scan {
 
     public static int scan(int current_position, int track_size, int[] requests) {
-        int head_movement = 0;
+        int start = current_position;
+        int size = track_size;
+        int n = requests.length;
+        int loc[][] = new int[n][2];
+        int countGreater = 0; //count for how many locations are greater than start
+        int countLess = 0; //count for how many locations are less than start
 
-        // Sort the requests in ascending order
-        Arrays.sort(requests);
+        for (int i = 1; i <= n; i++) {
+            loc[i - 1][0] = i;
+            loc[i - 1][1] = requests[i - 1];
 
-        // Find the index where the current position would be inserted
-        int index = Arrays.binarySearch(requests, current_position);
+            if (loc[i - 1][1] > start) {
+                countGreater = countGreater + 1;
+            } else if (loc[i - 1][1] < start) {
+                countLess = countLess + 1;
+            } else {
 
-        // Adjust the index if the current position is not found
-        if (index < 0) {
-            index = -(index - 1);
+            }
         }
 
-        // Move the head towards the right track
-        for (int i = index; i < requests.length; i++) {
-            head_movement += Math.abs(requests[i] - current_position);
-            current_position = requests[i];
+        //sort
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int tempA = 0;
+                int tempB = 0;
+
+                if (loc[j][1] < loc[i][1]) {
+                    tempA = loc[i][0];
+                    tempB = loc[i][1];
+
+                    loc[i][0] = loc[j][0];
+                    loc[i][1] = loc[j][1];
+
+                    loc[j][0] = tempA;
+                    loc[j][1] = tempB;
+                }
+            }
         }
 
-        // Handle the case when the head is at the rightmost track
-        if (current_position != track_size - 1) {
-            head_movement += Math.abs(track_size - 1 - current_position); // Move to the rightmost track
-            current_position = track_size - 1;
+        int greaterThanStart[][] = new int[countGreater][2];
+        int lessThanStart[][] = new int[countLess][2];
+
+        int greaterIndex = 0;
+        int lessIndex = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (loc[i][1] > start) {
+                greaterThanStart[greaterIndex][0] = loc[i][0];
+                greaterThanStart[greaterIndex][1] = loc[i][1];
+                greaterIndex = greaterIndex + 1;
+            } else if (loc[i][1] < start) {
+                lessThanStart[lessIndex][0] = loc[i][0];
+                lessThanStart[lessIndex][1] = loc[i][1];
+                lessIndex = lessIndex + 1;
+            } else {
+
+            }
         }
 
-        // Move the head towards the left track
-        for (int i = index - 1; i >= 0; i--) {
-            head_movement += Math.abs(requests[i] - current_position);
-            current_position = requests[i];
+        int thm = 0; //total head movement
+
+        //depends on queue number
+        if (lessThanStart[countLess - 1][0] < greaterThanStart[countGreater - 1][0]) {
+            thm = start - lessThanStart[0][1]; // total head movement from start to lowest number;
+            thm += greaterThanStart[countGreater - 1][1] - lessThanStart[0][1]; // add to total head movement from lowest number to highest number;
+            thm += size - 1 - greaterThanStart[countGreater - 1][1]; // add to total head movement from highest number to the end of the track;
+        } else {
+            thm = start - lessThanStart[0][1]; // total head movement from start to lowest number;
+            thm += greaterThanStart[countGreater - 1][1] - lessThanStart[countLess - 1][1]; // add to total head movement from highest number to lowest number;
+            thm += size - 1 - greaterThanStart[countGreater - 1][1]; // add to total head movement from lowest number to the end of the track;
         }
 
-        return head_movement;
+        //add the head movement from the last request to the end of the track
+        thm += size - 1 - greaterThanStart[countGreater - 1][1];
+
+        return thm;
     }
 }
