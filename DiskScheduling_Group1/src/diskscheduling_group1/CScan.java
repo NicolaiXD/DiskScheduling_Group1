@@ -143,8 +143,16 @@ public class CScan {
         
         int thm = 0; //total head movement
         
+        if (countLess <= 0) // if no value is less than start
+        {
+            thm = greaterThanStart [countGreater - 1][1] - start; //total head movement from start to highest number;
+        }
+        else if (countGreater <= 0) // if no value is greater than start
+        {
+            thm = start - lessThanStart [0][1]; //total head movement from start to lowest number;
+        }
         //depends on queue number
-        if (lessThanStart [countLess - 1][0] < greaterThanStart [0][0])
+        else if (lessThanStart [countLess - 1][0] < greaterThanStart [0][0])
         {
             thm = start + size -1 + size - 1 - greaterThanStart [0][1]; //total head movement from start to 0 to maxlimit to lowest greaterThanStart
         }
