@@ -72,7 +72,7 @@ public class Scan {
         }
         else 
         {
-            thm = size - 1 - start + size - lessThanStart [0][1]; //total head movement from start to maxlimit to lowest number;
+            thm = size - 1 - start + size -1 - lessThanStart [0][1]; //total head movement from start to maxlimit to lowest number;
         }
 
         return thm;
