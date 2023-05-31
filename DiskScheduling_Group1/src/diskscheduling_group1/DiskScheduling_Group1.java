@@ -117,7 +117,9 @@ public class DiskScheduling_Group1 {
             }
 
             System.out.println("Total head movement: " + head_movement);
-
+            double seekTime = head_movement / num_requests;
+            System.out.println("Seek Time: " + head_movement);
+            
             System.out.print("Input again (Y/N)? ");
             String repeat = scanner.next();
 
